@@ -16,15 +16,15 @@ public class gamePanel extends JPanel
         public gamePanel(Color c){ //no gods no kings no layout only ME
             
             this.setBackground(c);   
-            bob = new Rectangle(100,300,20,20,10);   
+            bob = new Rectangle(200,250,20,20,10);   
+            room.add(new Rectangle(100,100, 300, 20, 0));//this makes the top part of room
+            room.add(new Rectangle(100,100,20, 300, 0)); //makes left wall
+            room.add(new Rectangle(100, 380,300,20,0));//makes floor
+            room.add(new Rectangle(380,100,20,300,0));//right wall
             
-           button1 = new JButton("Click dammit");
-           button1.setBounds(20, 200, 70, 70);  //start x coord, end x coord, start y coord, end y coord
-        
-           button2 = new JButton("hello");
-           button2.setBounds(200,200,70,70);
-        
-           isFocusable();
+            room.add(new Rectangle( 330  ,120, 40, 60, 0));
+            room.add(new Rectangle(140,125,50,30,0));
+            isFocusable();
            setFocusable(true);
            addKeyListener(new MyKeyListener());
         }
@@ -32,14 +32,18 @@ public class gamePanel extends JPanel
         public void paintComponent(Graphics g){
          super.paintComponent(g);   
           setFocusable(true);  
-           add(button1); 
-           add(button2);
+          
             bob.draw(g);
+            for(int i = 0; i < room.size(); i++){
+                
+             Rectangle temp = room.get(i);   
+                temp.draw(g);
+            }
             try{
               Thread.sleep(10);//pauses computer to get milliseconds
             }
             
-           catch(Exception e){
+            catch(Exception e){
                 
                 
             }
